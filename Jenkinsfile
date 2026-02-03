@@ -2,7 +2,28 @@ pipeline {
     agent any
 
     stages {
-        stage('Run Python Tests') {
+
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh '''
+                    docker pull python:3.11
+
+                    docker run --rm \
+                        -v $PWD:/app \
+                        -w /app \
+                        python:3.11 \
+                        bash -c "pip install pytest"
+                '''
+            }
+        }
+
+        stage('Test') {
             steps {
                 // add -q to run pytest in quiet mode
                 sh '''
@@ -10,7 +31,7 @@ pipeline {
                         -v $PWD:/app \
                         -w /app \
                         python:3.11 \
-                        bash -c "pip install pytest && pytest"
+                        bash -c "pytest"
                 '''
             }
         }
