@@ -9,7 +9,7 @@ pipeline {
                         -v $PWD:/app \
                         -w /app \
                         python:3.11 \
-                        python test_funcs.py
+                        bash -c "pip install pytest && pytest -q"
                 '''
             }
         }
