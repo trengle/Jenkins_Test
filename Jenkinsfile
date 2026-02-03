@@ -34,18 +34,18 @@ pipeline {
                         -v $PWD:/app \
                         -w /app \
                         python:3.11 \
-                        bash -c "pip install pytest && pytest -q"
+                        bash -c "pip install pytest && pytest"
                 '''
             }
         }
 
-        stage('Package') {
-            steps {
-                sh '''
-                    docker build -t funcs-app .
-                '''
-            }
-        }
+        // stage('Package') {
+        //     steps {
+        //         sh '''
+        //             docker build -t funcs-app .
+        //         '''
+        //     }
+        // }
 
         // stage('Deploy') {
         //     steps {
