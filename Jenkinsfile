@@ -5,7 +5,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/trengle/Jenkins_Test/blob/master/Jenkinsfile.git'
+                git branch: 'main', url: 'https://github.com/trengle/Jenkins_Test.git'
             }
         }
 
